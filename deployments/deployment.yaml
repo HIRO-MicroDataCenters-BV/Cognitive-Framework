@@ -1,0 +1,64 @@
+apiVersion: "apps/v1"
+kind: "Deployment"
+metadata:
+  name: "cogflow-engine"
+  namespace: "default"
+  labels:
+    app: "cogflow-engine"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: "cogflow-engine"
+  template:
+    metadata:
+      labels:
+        app: "cogflow-engine"
+    spec:
+      containers:
+        - name: "cogflow-engine"
+          imagePullPolicy: Always
+          image: "hiroregistry/cogframework:1.5"
+          ports:
+            - containerPort: 80
+          env:
+            - name: DB_HOST
+              value: "postgres"
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config
+                  key: POSTGRES_USER
+            - name: DB_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config
+                  key: POSTGRES_PASSWORD
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config
+                  key: POSTGRES_DB
+            - name: MINIO_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: MINIO_ACCESS_KEY
+                  name: mlflow-server-minio-artifact
+                  optional: false
+            - name: MINIO_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: MINIO_SECRET_ACCESS_KEY
+                  name: mlflow-server-minio-artifact
+                  optional: false
+            - name: MINIO_ENDPOINT_URL
+              value: mlflow-minio.kubeflow:9000
+          volumeMounts:
+            - name: data-volume
+              mountPath: /app/var/data/ # Mount path for the PVC
+      volumes:
+        - name: data-volume
+          persistentVolumeClaim:
+            claimName: data-pvc # Name of the PVC

@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+ app:
+   build:
+     context: .
+     dockerfile: Dockerfile
+   environment:
+     - DB_USER=hiro
+     - DB_PASSWORD=hiropwd
+     - DB_HOST=postgres
+     - DB_PORT=5432
+     - DB_NAME=cognitivedb
+   depends_on:
+     - postgres
+     - neo4j
+   ports:
+     - "5000:5000"
+ postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: hiro
+      POSTGRES_PASSWORD: hiropwd
+      POSTGRES_DB: cognitivedb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+ neo4j:
+   image: neo4j:4.4
+   environment:
+     NEO4J_AUTH: neo4j/password
+   ports:
+     - "7687:7687"
+     - "7474:7474"
+   volumes:
+     - neo4j_data:/data
+
+volumes:
+  postgres_data:
+  neo4j_data:

@@ -1,0 +1,30 @@
+FROM ubuntu:22.04
+
+# Metadata
+LABEL maintainer="info@hiro-microdatacenters.nl"
+LABEL description="Docker image with Juju pre-installed for CD pipeline"
+
+# Install dependencies and Juju
+ARG JUJU_VERSION=3.6.1
+RUN apt-get update && apt-get install -y \
+    dnsutils \
+    curl \
+    xz-utils && \
+    apt-get clean && \
+    curl -L https://launchpad.net/juju/3.6/$JUJU_VERSION/+download/juju-${JUJU_VERSION}-linux-amd64.tar.xz -o /tmp/juju.tar.xz && \
+    tar -xJf /tmp/juju.tar.xz -C /usr/local/bin && \
+    chmod +x /usr/local/bin/juju && \
+    rm /tmp/juju.tar.xz
+
+# Verify Juju installation
+RUN juju version
+
+# Copy the entrypoint script
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+# Entrypoint
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+
+# Default command
+CMD ["juju"]

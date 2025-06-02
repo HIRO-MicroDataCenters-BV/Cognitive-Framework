@@ -8,6 +8,8 @@ Cognitive Framework is an open-source, cloud-native platform delivering end-to-e
 - **Cogflow**: A Python library and API that seamlessly integrates Kubeflow and MLflow, adds federated learning capabilities, and exposes system management endpoints.
 - **Cognitive Charm**: A Juju package that automates deployment of the entire platform (including Kubernetes, storage backends, MinIO, databases, ingress, TLS, and all dependencies).
 
+![Cog Engine Detailed Design Future](app/static/img/CF_future.png?raw=true "Cog framework detailed design Future")
+
 ![Cog Engine Detailed Design](app/static/img/cf_services.png?raw=true "Cog framework detailed design")
 
 ---

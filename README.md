@@ -8,8 +8,10 @@ Cognitive Framework is an open-source, cloud-native platform delivering end-to-e
 - **Cogflow**: A Python library and API that seamlessly integrates Kubeflow and MLflow, adds federated learning capabilities, and exposes system management endpoints.
 - **Cognitive Charm**: A Juju package that automates deployment of the entire platform (including Kubernetes, storage backends, MinIO, databases, ingress, TLS, and all dependencies).
 
-![Cog Engine Detailed Design Future](app/static/img/CF_future.png?raw=true "Cog framework detailed design Future")
+**Future Cognitive Framework**
+![Cog Engine Detailed Design Future](app/static/img/CF_future.jpg?raw=true "Cog framework detailed design Future")
 
+**Current Cognitive Framework**
 ![Cog Engine Detailed Design](app/static/img/cf_services.png?raw=true "Cog framework detailed design")
 
 ---
@@ -92,91 +94,6 @@ juju status --color
 
 ---
 
-## Development & Contributing
-
-Contributions are welcome! Steps:
-
-1. Fork the repo and create a feature branch.  
-2. Run tests locally:
-   ```bash
-   pytest
-   ```
-3. Follow conventional commits and open a PR against main.  
-
-See CONTRIBUTING.md for guidelines.
-
----
-
-## License
-
-Licensed under the Apache License 2.0. See LICENSE for details.
-
----
-
-## Contact
-
-- GitHub: https://github.com/your-org/cognitive-framework  
-- Discourse: https://discourse.charmhub.io  
-
-*Happy orchestrating!*
-
-
-### Prerequisites
-
-Ensure you have installed all the following prerequisites on your development machine:
-
-- **Git** - [Download & Install Git](https://git-scm.com/downloads). OSX and Linux machines typically have this already
-  installed.
-- **Postgres Server
-  ** - [Postgres Server Installation](https://www.prisma.io/dataguide/postgresql/setting-up-a-local-postgresql-database)
-- **pgAdmin** - [Download & Install pgAdmin](https://www.pgadmin.org/download/).
-- **Docker** - [Install Docker](https://docs.docker.com/engine/install/)
-- **minikube** - [Install minikube](https://minikube.sigs.k8s.io/docs/start/)
-
-### Software Installation Steps
-
-- **Git Installation**:
-    - [Generate SSH Key](https://docs.gitlab.com/ee/user/ssh.html#generate-an-ssh-key-pair)
-    - [Add the public key to your GitLab account](https://docs.gitlab.com/ee/user/ssh.html#add-an-ssh-key-to-your-gitlab-account)
-    - [Verify if you can connect](https://docs.gitlab.com/ee/user/ssh.html#verify-that-you-can-connect)
-
-- **Docker Installation and Setup**:
-    - [Docker Installation and Setup](https://docs.docker.com/engine/install/)
-
-- **Start Minikube**:
-
-  ```sh
-  $ docker context use default 
-  $ minikube start --driver=docker 
-  ```
-
-### Installation
-
-Pull down the source code from this GitLab repository:
-
-```sh
-$ git clone git@gitlab.com:hiro-company/cog_framework.git
-```
-
-Create a new virtual environment:
-
-```sh
-$ cd Cog-Engine
-$ python3 -m venv venv
-```
-
-Activate the virtual environment:
-
-```sh
-$ source venv/bin/activate
-```
-
-Install the Python packages specified in `requirements.txt`:
-
-```sh
-(venv) $ pip install -r requirements.txt
-```
-
 ### Configure Database URL if Required
 
 This application needs a Postgres database to store data. Set the following environment variables to configure the
@@ -238,84 +155,6 @@ Set the following environment variables as per your configuration:
 
 - **CogFlow Configuration File Path**:
     - `COGFLOW_CONFIG_FILE_PATH`: Path to the CogFlow configuration file.
-
-### Running the Application
-
-#### Local Development
-
-```sh
-bash deployments/deploy.sh
-```
-
-Configure `/etc/hosts` file to point Postgres service to localhost IP address:
-
-```sh
-$ vim /etc/hosts
-127.0.0.1	localhost postgres
-```
-
-Change the logs directory to your specific logs directory in **constants.py**:
-
-```properties
-LOGS_DIR='logs'
-DOWNLOAD_DIR='data'
-FILE_UPLOAD_PATH='data/'
-```
-
-Also update the **logging.ini** file:
-
-```properties
-args=('logs/cog.log', 'a', 5 * 1024 * 1024, 5,'utf-8')
-args=('logs/cog-error.log', 'a', 5 * 1024 * 1024, 5,'utf-8')
-```
-
-Run the following commands to start the application:
-
-```sh
-(venv) $ uvicorn app.main:app --reload
-```
-
-Navigate to `http://127.0.0.1:8000/cogapi/docs` in your favorite web browser to view the Swagger documentation!
-
-#### Local Deployment
-
-If any code change is made, build the image for deployment:
-
-```sh
-$ docker build -t cog-image . 
-```
-
-## Key Python Modules Used
-
-- **FastAPI**: Micro-framework for web application development.
-- **pytest**: Framework for testing Python projects.
-- **SQLAlchemy**: ORM (Object Relational Mapper) for FastAPI.
-
-This application is written using Python 3.10.
-
-## Testing
-
-To run all the tests:
-
-```sh
-(venv) $ python -m pytest -v
-```
-
-To check the code coverage of the tests:
-
-```sh
-(venv) $ python -m pytest --cov-report term-missing --cov=app
-```
-
-## Pre-commit Hooks
-Run the following command to install the hooks specified in your .pre-commit-config.yaml file:
-```sh
-(venv) $ pre-commit install
-```
-Run pre-commit hooks manually
-```sh
-(venv) $ pre-commit run --all-files
-```
 
 ## Author
 

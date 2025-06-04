@@ -73,6 +73,19 @@ Cognitive Framework is an open-source, cloud-native platform delivering end-to-e
 
 ## Installation
 
+To install the Cognitive Framework, use the following command:
+## 🧰 Juju Installation
+
+[Juju](https://juju.is) is required to deploy the Cognitive Framework using the Cognitive Charm.
+
+Install Juju depending on your operating system:
+
+### 📦 Ubuntu / Debian
+
+```bash
+sudo snap install juju --classic
+```
+
 ```bash
 juju bootstrap
 juju add-model kubeflow
@@ -85,7 +98,7 @@ This single command installs and configures:
 - PostgreSQL for MLflow backend  
 - Kubeflow Pipelines and MLflow services  
 - Ingress and TLS certificates  
-- ...
+
 Check status with:
 
 ```bash

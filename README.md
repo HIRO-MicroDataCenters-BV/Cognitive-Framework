@@ -1,7 +1,14 @@
 # Cognitive Framework
 
-[![License: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)  
-[![Juju Charm](https://img.shields.io/badge/charm–store-cognitive-blue.svg)](https://charmhub.io/cognitive)
+
+
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" alt="License: Apache 2.0"></a>
+  <a href="https://charmhub.io/cognitive"><img src="https://img.shields.io/badge/charm–store-cognitive-blue.svg" alt="Juju Charm"></a>
+  <img src="https://api.checklyhq.com/v1/badges/groups/1120718?style=flat&theme=default" alt="Checkly QA">
+  <a href="https://github.com/HIRO-MicroDataCenters-BV/Cognitive-Framework/stargazers"><img src="https://img.shields.io/github/stars/HIRO-MicroDataCenters-BV/Cognitive-Framework" alt="GitHub Stars"></a>
+  <a href="https://contributor-covenant.org/version/1/4/code-of-conduct/"><img src="https://img.shields.io/badge/Contributor%20Covenant-1.4-purple" alt="Code of Conduct"></a>
+</p>
 
 Cognitive Framework is an open-source, cloud-native platform delivering end-to-end ML orchestration, experiment tracking, and federated learning support. It comprises:
 

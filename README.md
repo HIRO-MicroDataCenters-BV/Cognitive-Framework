@@ -196,7 +196,7 @@ For source project license, contact the administrator for the license.
 
 ## Support
 
-For support, contact us via email or through our issue tracker.
+For support, contact us via info@hiro-microdatacenters.nl or through our issue tracker.
 
 ## Roadmap
 

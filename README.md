@@ -192,7 +192,7 @@ Set the following environment variables as per your configuration:
 ## License
 
 For source project license, contact the administrator for the license.
-[The Cog Framework License](LICENSE.md)
+[The Cog Framework License](LICENSE)
 
 ## Support
 
